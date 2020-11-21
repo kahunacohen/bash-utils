@@ -2,7 +2,7 @@
 
 ### Increments the part of the string
 ## $1: version itself
-## $2: number of part: 0 – major, 1 – minor, 2 – patch
+## $2: part: major, minor, patch
 function bump_version {
     declare version=${1:-$(</dev/stdin)};
       declare part=${2:-$(</dev/stdin)};
