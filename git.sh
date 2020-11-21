@@ -4,8 +4,8 @@
 ## $1: version itself
 ## $2: part: major, minor, patch
 function bump_version {
-    declare version=${1:-$(</dev/stdin)};
-      declare part=${2:-$(</dev/stdin)};
+    declare version=${2:-$(</dev/stdin)};
+      declare part=${1:-$(</dev/stdin)};
     local i=2 # Default is patch
   if [ "major" == "$part" ]; then i=0; fi
   if [ "minor" == "$part" ]; then i=1; fi
