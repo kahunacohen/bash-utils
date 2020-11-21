@@ -3,6 +3,13 @@
 function gca {
   git commit -am "$1"
 }
+alias gp='git push'
+
+function gcap {
+  gca $1
+  gp
+}
+
 ### Increments the part of the string
 ## $1: version itself
 ## $2: part: major, minor, patch
