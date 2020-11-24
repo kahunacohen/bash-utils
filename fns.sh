@@ -59,6 +59,7 @@ function bump_tag_push {
 # $2 - The version
 function mod_package_json {
     jq ".version=\"$2\"" $1/package.json
+}
 
 # Kills a port by port number.
 # $1: The port number.
@@ -73,7 +74,4 @@ function kill_ports {
     :
     x=$(lsof -t -i :$i)
     kill $x
-  done
-}
-
-}
+  }
