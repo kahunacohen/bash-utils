@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+# Git
 alias gd='git diff'
 alias gp='git push'
 alias gs='git status'
+alias git_branch_ls='git branch --sort=-committerdate'
 
 function gca {
   git commit -am "$1"
@@ -52,6 +54,11 @@ function bump_tag_push {
   git tag -a $(bump_latest_tag $1) -m "$2"
   git push --tags
  }
+# Outputs package.json version with new version
+# $1 - The path to package.json. E.g. ./
+# $2 - The version
+function mod_package_json {
+    jq ".version=\"$2\"" $1/package.json
 
 # Kills a port by port number.
 # $1: The port number.
@@ -69,9 +76,4 @@ function kill_ports {
   done
 }
 
-# Outputs package.json version with new version
-# $1 - The path to package.json. E.g. ./
-# $2 - The version
-function mod_package_json {
-    jq ".version=\"$2\"" $1/package.json
 }
