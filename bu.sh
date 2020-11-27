@@ -9,7 +9,6 @@ alias git_branch_ls='git branch --sort=-committerdate'
 function gca {
   git commit -am "$1"
 }
-
 function gcap {
   gca $1 && gp
 }
@@ -51,14 +50,19 @@ function bump_latest_tag {
 # $1: major|minor|patch
 # $1: Commit message.
 function bump_tag_push {
-  git tag -a $(bump_latest_tag $1) -m "$2"
-  git push --tags
+    declare part=${1:-$(</dev/stdin)};
+    declare msg=${2:-$(</dev/stdin)};
+    git tag -a $(bump_latest_tag $part) -m "$msg"
+    git push --tags
  }
 # Outputs package.json version with new version
 # $1 - The path to package.json. E.g. ./
 # $2 - The version
 function mod_package_json {
-    jq ".version=\"$2\"" $1/package.json
+    declare path=${1:-$(</dev/stdin)};
+    declare version=${1:-$(</dev/stdin)};
+
+    jq ".version=\"$version\"" $path/package.json
 }
 
 # Kills a port by port number.
@@ -74,4 +78,4 @@ function kill_port {
 #    :
 #    x=$(lsof -t -i :$i)
 #    kill $x
-#  } 
+#  }
